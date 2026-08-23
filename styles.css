@@ -1,0 +1,346 @@
+/*
+========================================
+  FONT SETUP INSTRUCTIONS
+========================================
+1. Create a "fonts" folder in this project directory
+2. Place your "Arial Narrow 7.ttf" file inside it
+3. The @font-face below will pick it up automatically
+========================================
+*/
+
+@font-face {
+  font-family: 'Arial Narrow 7';
+  src: url('./fonts/Arial Narrow 7.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --gray: #999;
+  --font: 'Arial Narrow 7', 'Arial Narrow', Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--white);
+  color: var(--black);
+  min-height: 100vh;
+  display: flex;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.3;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Main Content ---------- */
+.main {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Left Name ---------- */
+.quote-aside {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 50;
+}
+
+.quote-aside p {
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.7;
+  text-transform: lowercase;
+  opacity: 0.8;
+  text-align: right;
+}
+
+
+/* ---------- Left Location ---------- */
+.location-aside {
+  position: fixed;
+  top: 28px;
+  left: 28px;
+  z-index: 50;
+}
+
+.location-aside p {
+  font-size: 18px;
+  letter-spacing: 1px;
+  line-height: 1.7;
+  text-transform: lowercase;
+  opacity: 0.8;
+}
+
+/* ---------- Right Quote ---------- */
+.quote-aside {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  z-index: 50;
+}
+
+.quote-aside p {
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.7;
+  text-transform: lowercase;
+  opacity: 0.8;
+  text-align: right;
+}
+
+/* ---------- Content Area ---------- */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 80px 0 80px;
+}
+
+/* ---------- Service Sections ---------- */
+.service-section {
+}
+
+.service-header {
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.service-header:hover {
+  background: #f5f5f5;
+}
+
+.service-header h2 {
+  font-size: clamp(16px, 2.5vw, 26px);
+  font-weight: 700;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}
+
+.service-header .toggle {
+  font-size: 16px;
+  opacity: 0.3;
+  transition: transform 0.3s, opacity 0.3s;
+  line-height: 1;
+}
+
+.service-header.open .toggle {
+  transform: rotate(45deg);
+  opacity: 0.7;
+}
+
+.service-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.service-body-inner {
+  padding: 0 24px 32px;
+}
+
+.service-body-inner ul {
+  list-style: none;
+}
+
+.service-warning {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 12px;
+}
+
+.service-body-inner li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.service-body-inner li:last-child {
+  border-bottom: none;
+}
+
+.service-images {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.service-images img {
+  flex: 0 1 200px;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s;
+  filter: grayscale(1);
+}
+
+.service-images img.loaded {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: 75vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border: none;
+  height: auto;
+  opacity: 1;
+  filter: none;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.6;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  font-size: 24px;
+  color: #fff;
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 12px;
+  user-select: none;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  opacity: 1;
+}
+
+.image-placeholder {
+  margin-top: 20px;
+  border: 1px dashed #ccc;
+  padding: 40px;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: 20px 48px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  z-index: 100;
+}
+
+.footer span {
+  font-size: 12px;
+  color: var(--black);
+}
+
+.footer a {
+  font-size: 12px;
+  color: var(--black);
+  transition: opacity 0.3s;
+}
+
+.footer a:hover {
+  opacity: 0.6;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .quote-aside {
+    display: none;
+  }
+
+  .location-aside {
+    display: none;
+  }
+
+  .content {
+    padding: 0;
+    padding-bottom: 56px;
+  }
+
+  .service-header {
+    padding: 16px 24px;
+  }
+
+  .service-body-inner {
+    padding: 0 24px 24px;
+  }
+
+  .footer {
+    padding: 16px 24px;
+  }
+}
