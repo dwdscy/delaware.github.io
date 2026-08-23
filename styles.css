@@ -247,9 +247,6 @@ a {
 }
 
 .lightbox-close {
-  position: absolute;
-  top: 24px;
-  right: 28px;
   font-size: 14px;
   color: #fff;
   opacity: 0.6;
