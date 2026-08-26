@@ -401,9 +401,10 @@ a {
     max-height: 85vh;
   }
 
-  .lightbox-prev,
-  .lightbox-next,
-  .lightbox-close {
+  .lightbox .lightbox-prev,
+  .lightbox .lightbox-next,
+  .lightbox .lightbox-close,
+  .lightbox .lightbox-right {
     display: none;
   }
 
