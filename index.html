@@ -52,8 +52,6 @@
   <div class="main">
     <div class="content">
 
-      <div class="content-inner">
-
       <section class="service-section" id="graphic-design">
         <div class="service-header" onclick="toggleService(this)">
           <h2>graphic design</h2>
@@ -76,18 +74,6 @@
               <img src="images/design-6.png" alt="graphic design work">
               <img src="images/design-7.png" alt="graphic design work">
               <img src="images/design-8.png" alt="graphic design work">
-              <img src="images/design-9.png" alt="graphic design work">
-              <img src="images/design-10.png" alt="graphic design work">
-              <img src="images/design-11.png" alt="graphic design work">
-              <img src="images/design-12.png" alt="graphic design work">
-              <img src="images/design-13.png" alt="graphic design work">
-              <img src="images/design-14.png" alt="graphic design work">
-              <img src="images/design-15.png" alt="graphic design work">
-              <img src="images/design-16.png" alt="graphic design work">
-              <img src="images/design-17.png" alt="graphic design work">
-              <img src="images/design-18.png" alt="graphic design work">
-              <img src="images/design-19.png" alt="graphic design work">
-              <img src="images/design-20.png" alt="graphic design work">
             </div>
           </div>
         </div>
@@ -134,8 +120,6 @@
           </div>
         </div>
       </section>
-
-      </div><!-- /content-inner -->
 
       <footer class="footer">
         <span>contact</span>
@@ -195,7 +179,7 @@
     animate();
 
     function toggleService(header) {
-      const sectionBody = header.nextElementSibling;
+      const body = header.nextElementSibling;
       const isOpen = header.classList.contains('open');
 
       document.querySelectorAll('.service-header').forEach(h => {
@@ -203,13 +187,10 @@
         h.nextElementSibling.style.maxHeight = null;
       });
 
-      let anyOpen = false;
       if (!isOpen) {
         header.classList.add('open');
-        sectionBody.style.maxHeight = sectionBody.scrollHeight + 'px';
-        anyOpen = true;
+        body.style.maxHeight = body.scrollHeight + 'px';
       }
-      document.body.classList.toggle('site-expanded', anyOpen);
     }
 
     let currentImageIndex = 0;
@@ -217,37 +198,24 @@
     let touchStartX = 0;
     let touchEndX = 0;
 
-    function loadDesignGallery() {
-      galleryImages.length = 0;
-      document.querySelectorAll('.service-images img').forEach(img => {
-        if (img.parentElement.tagName === 'A') return;
-        img.classList.remove('loaded');
-        img.style.display = '';
-        img.onload = () => {
-          img.classList.add('loaded');
-          img.style.display = '';
-        };
-        img.onerror = () => {
-          img.style.display = 'none';
-        };
-        img.addEventListener('click', () => {
-          currentImageIndex = galleryImages.indexOf(img);
-          openLightbox(img.src);
-        });
-        galleryImages.push(img);
+    document.querySelectorAll('.service-images img').forEach((img, i) => {
+      if (img.parentElement.tagName === 'A') return;
+      img.onload = () => img.classList.add('loaded');
+      img.onerror = () => img.style.display = 'none';
+      img.addEventListener('click', () => {
+        currentImageIndex = i;
+        openLightbox(img.src);
       });
-    }
-    loadDesignGallery();
+      galleryImages.push(img);
+    });
 
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;
       document.getElementById('lightbox').classList.add('open');
-      document.body.classList.add('lightbox-open');
     }
 
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('open');
-      document.body.classList.remove('lightbox-open');
     }
 
     function prevImage() {
