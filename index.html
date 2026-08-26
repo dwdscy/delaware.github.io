@@ -5,8 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@gab._.fry</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    canvas#pixel-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
+
+  <canvas id="pixel-rain"></canvas>
 
   <div class="lightbox" id="lightbox">
     <span class="lightbox-prev" onclick="prevImage()">&#8592;</span>
@@ -106,6 +130,54 @@
   </div>
 
   <script>
+    const canvas = document.getElementById('pixel-rain');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * -canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speed = Math.random() * 1.5 + 0.5;
+        this.opacity = Math.random() * 0.4 + 0.1;
+      }
+      update() {
+        this.y += this.speed;
+        if (this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    for (let i = 0; i < 80; i++) {
+      const p = new Particle();
+      p.y = Math.random() * canvas.height;
+      particles.push(p);
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
     function toggleService(header) {
       const body = header.nextElementSibling;
       const isOpen = header.classList.contains('open');
