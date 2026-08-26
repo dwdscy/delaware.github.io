@@ -344,14 +344,74 @@ a {
   }
 
   .service-header {
-    padding: 16px 24px;
+    padding: 16px 16px;
+  }
+
+  .service-header h2 {
+    font-size: 18px;
   }
 
   .service-body-inner {
-    padding: 0 24px 24px;
+    padding: 0 16px 24px;
+  }
+
+  .service-body-inner li {
+    font-size: 11px;
+    padding: 8px 0;
+  }
+
+  .service-images {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .service-images img {
+    flex: 0 1 calc(50% - 4px);
+    height: 140px;
+  }
+
+  .service-images a {
+    flex: 0 1 calc(50% - 4px);
+    height: 100px;
+  }
+
+  .service-warning {
+    font-size: 8px;
   }
 
   .footer {
-    padding: 16px 24px;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .footer span {
+    font-size: 10px;
+  }
+
+  .footer a {
+    font-size: 10px;
+  }
+
+  .lightbox {
+    gap: 12px;
+  }
+
+  .lightbox img {
+    max-width: 85vw;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .lightbox-close {
+    font-size: 12px;
+  }
+
+  .image-placeholder {
+    padding: 24px;
+    font-size: 8px;
   }
 }
