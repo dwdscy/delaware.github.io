@@ -173,7 +173,7 @@ a {
 .service-images {
   margin-top: 20px;
   display: flex;
-  gap: 12px;
+  gap: 6px;
 }
 
 .service-images img {
@@ -379,18 +379,34 @@ a {
   }
 
   .service-images {
-    flex-wrap: wrap;
-    gap: 8px;
+    width: 100vw;
+    margin-left: -16px;
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 16px;
+  }
+
+  .service-images::-webkit-scrollbar {
+    display: none;
   }
 
   .service-images img {
-    flex: 0 1 calc(50% - 4px);
-    height: 140px;
+    flex: 0 0 80%;
+    height: 220px;
+    scroll-snap-align: center;
+    object-fit: contain;
+    border: none;
   }
 
   .service-images a {
-    flex: 0 1 calc(50% - 4px);
-    height: 100px;
+    flex: 0 0 80%;
+    height: 160px;
+    scroll-snap-align: center;
+    border: none;
   }
 
   .service-warning {
