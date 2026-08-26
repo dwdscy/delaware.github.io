@@ -345,7 +345,7 @@ a {
 
   .content {
     overflow-y: hidden;
-    justify-content: flex-start;
+    justify-content: safe center;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -421,6 +421,16 @@ a {
 
   .lightbox {
     gap: 0;
+    background: #000;
+    touch-action: none;
+  }
+
+  body.lightbox-open .main {
+    visibility: hidden;
+  }
+
+  body.lightbox-open .footer {
+    display: none;
   }
 
   .lightbox img {
