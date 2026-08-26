@@ -393,25 +393,21 @@ a {
   }
 
   .lightbox {
-    gap: 12px;
+    gap: 0;
   }
 
   .lightbox img {
-    max-width: 85vw;
+    max-width: 95vw;
+    max-height: 85vh;
   }
 
   .lightbox-prev,
-  .lightbox-next {
-    font-size: 18px;
-    padding: 8px;
-  }
-
+  .lightbox-next,
   .lightbox-close {
-    font-size: 12px;
+    display: none;
   }
 
   .image-placeholder {
-    padding: 24px;
-    font-size: 8px;
+    display: none;
   }
 }

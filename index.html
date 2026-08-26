@@ -195,6 +195,8 @@
 
     let currentImageIndex = 0;
     const galleryImages = [];
+    let touchStartX = 0;
+    let touchEndX = 0;
 
     document.querySelectorAll('.service-images img').forEach((img, i) => {
       if (img.parentElement.tagName === 'A') return;
@@ -241,8 +243,25 @@
       }
     }
 
-    document.getElementById('lightbox').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) closeLightbox();
+    const lightbox = document.getElementById('lightbox');
+
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextImage();
+        else prevImage();
+      } else {
+        closeLightbox();
+      }
+    }, { passive: true });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget || e.target.id === 'lightbox-img') closeLightbox();
     });
   </script>
 
