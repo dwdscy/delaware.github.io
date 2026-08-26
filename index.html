@@ -72,8 +72,6 @@
               <img src="images/design-4.png" alt="graphic design work">
               <img src="images/design-5.png" alt="graphic design work">
               <img src="images/design-6.png" alt="graphic design work">
-              <img src="images/design-7.png" alt="graphic design work">
-              <img src="images/design-8.png" alt="graphic design work">
             </div>
           </div>
         </div>
@@ -191,6 +189,18 @@
         header.classList.add('open');
         body.style.maxHeight = body.scrollHeight + 'px';
       }
+
+      if (window.innerWidth <= 768) {
+        const quote = document.querySelector('.quote-aside');
+        const location = document.querySelector('.location-aside');
+        if (isOpen) {
+          quote.classList.remove('hidden');
+          location.classList.remove('hidden');
+        } else {
+          quote.classList.add('hidden');
+          location.classList.add('hidden');
+        }
+      }
     }
 
     let currentImageIndex = 0;
@@ -263,33 +273,6 @@
     lightbox.addEventListener('click', (e) => {
       if (e.target === e.currentTarget || e.target.id === 'lightbox-img') closeLightbox();
     });
-
-    // Mobile carousel loop
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll('.service-images').forEach(container => {
-        const items = Array.from(container.children);
-        if (items.length < 2) return;
-
-        const firstClone = items[0].cloneNode(true);
-        const lastClone = items[items.length - 1].cloneNode(true);
-        firstClone.classList.add('clone');
-        lastClone.classList.add('clone');
-        container.appendChild(firstClone);
-        container.insertBefore(lastClone, items[0]);
-
-        container.scrollLeft = items[0].offsetLeft;
-
-        container.addEventListener('scroll', () => {
-          const first = container.querySelector('.clone');
-          const last = container.querySelector('.clone:last-of-type');
-          if (container.scrollLeft <= 0) {
-            container.scrollLeft = last.offsetLeft - 8;
-          } else if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
-            container.scrollLeft = first.offsetLeft + 8;
-          }
-        });
-      });
-    }
   </script>
 
 </body>
