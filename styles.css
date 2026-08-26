@@ -100,6 +100,10 @@ a {
   padding: 80px 0 80px;
 }
 
+.content-inner {
+  width: 100%;
+}
+
 /* ---------- Service Sections ---------- */
 .service-section {
 }
@@ -236,6 +240,20 @@ a {
   pointer-events: auto;
 }
 
+body.lightbox-open .main {
+  visibility: hidden;
+}
+
+body.lightbox-open .main * {
+  pointer-events: none;
+}
+
+body.lightbox-open .location-aside,
+body.lightbox-open .quote-aside,
+body.lightbox-open .footer {
+  visibility: hidden;
+}
+
 .lightbox img {
   max-width: 75vw;
   max-height: 90vh;
@@ -345,12 +363,24 @@ a {
 
   .content {
     overflow-y: hidden;
-    justify-content: safe center;
+    justify-content: center;
+    min-height: 100vh;
     -webkit-overflow-scrolling: touch;
+    padding: 0;
+    padding-bottom: 56px;
+  }
+
+  .content-inner {
+    margin: auto;
+    width: 100%;
   }
 
   body.site-expanded .content {
     overflow-y: auto;
+  }
+
+  body.site-expanded .content-inner {
+    margin: 0 auto;
   }
 
   body.lightbox-open .content {
@@ -363,11 +393,6 @@ a {
 
   .location-aside {
     display: none;
-  }
-
-  .content {
-    padding: 0;
-    padding-bottom: 56px;
   }
 
   .service-header {
@@ -423,14 +448,6 @@ a {
     gap: 0;
     background: #000;
     touch-action: none;
-  }
-
-  body.lightbox-open .main {
-    visibility: hidden;
-  }
-
-  body.lightbox-open .footer {
-    display: none;
   }
 
   .lightbox img {
