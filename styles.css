@@ -344,8 +344,17 @@ a {
   }
 
   .content {
-    overflow-y: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
+  }
+
+  body.site-expanded .content {
+    overflow-y: auto;
+  }
+
+  body.lightbox-open .content {
+    overflow-y: hidden;
   }
 
   .quote-aside {
