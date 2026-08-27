@@ -182,13 +182,11 @@ a {
   object-fit: cover;
   display: block;
   border: 1px solid rgba(0, 0, 0, 0.8);
-  opacity: 0;
   transition: opacity 0.3s;
   filter: grayscale(1);
 }
 
 .service-images img.loaded {
-  opacity: 1;
   cursor: pointer;
 }
 
@@ -244,6 +242,10 @@ a {
   height: auto;
   opacity: 1;
   filter: none;
+}
+
+.swipe-indicator {
+  display: none;
 }
 
 .lightbox-close {
@@ -397,7 +399,7 @@ a {
   }
 
   .service-header {
-    padding: 16px;
+    padding: 16px 36px 16px 16px;
     gap: 12px;
     justify-content: space-between;
   }
@@ -441,10 +443,17 @@ a {
 
   .service-images a {
     flex: 0 0 40%;
-    height: 170px;
+    height: auto;
+    aspect-ratio: 16/9;
     scroll-snap-align: center;
-    object-fit: cover;
     border: 1px solid rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+  }
+
+  .service-images a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .service-warning {
@@ -470,7 +479,8 @@ a {
 
   .lightbox img {
     max-width: 95vw;
-    max-height: 85vh;
+    max-height: 70vh;
+    margin-bottom: 20px;
   }
 
   .lightbox .lightbox-prev,
@@ -478,6 +488,23 @@ a {
   .lightbox .lightbox-close,
   .lightbox .lightbox-right {
     display: none;
+  }
+
+  .swipe-indicator {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+    z-index: 1001;
+  }
+
+  .swipe-indicator img {
+    height: 24px;
+    width: auto;
+    transform: scaleX(2);
   }
 
   .image-placeholder {
